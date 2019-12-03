@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View, ActivityIndicator } from 'react-native';
 import { Container, Content, List, Text } from 'native-base';
 
 import DataItem from '../../component/dataItem';
@@ -30,16 +30,27 @@ export default class ListThumbnailExample extends Component {
 
   render() {
     console.log(this.state.data);
+
+    let view = this.state.isLoading ? (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator animating={this.state.isLoading}  color="#00f0ff" />
+        <Text style={{marginTop: 10}} children="Loading news.." />
+      </View>
+    ) : (
+      <List
+        dataArray={this.state.data}
+        renderRow={(item) => {
+          return (
+          <DataItem data={item} />
+          )
+        }}
+      /> 
+    )
     
     return (
       <Container>
         <Content>
-          <List
-            dataArray={this.state.data}
-            renderRow={(item) => {
-                return <DataItem data={item} />
-            }}> 
-            </List>
+          { view }          
         </Content>
       </Container>
     );

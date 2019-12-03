@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ListItem, Left, Right, Thumbnail, Body, Text, Button, View } from 'react-native';
+import { ListItem, Left, Right, Thumbnail, Body, Text, Button, View } from 'native-base';
 
 
-class DataItem extends Component {
+export default class DataItem extends Component {
 
     constructor(props) {
         super(props);
@@ -22,8 +22,8 @@ class DataItem extends Component {
                 />
             </Left>
             <Body>
-              <Text>This is our title</Text>
-              <Text note numberOfLines={2}>Its time to build a difference . . Its time to build a difference . . Its time to build a difference . .</Text>
+              <Text numberOfLines={2}>{this.data.title}</Text>
+              <Text note numberOfLines={2}>{this.data.description}</Text>
             </Body>
             <Right>
               <Button transparent>
@@ -34,5 +34,3 @@ class DataItem extends Component {
         )
     }
 }
-
-export default DataItem;

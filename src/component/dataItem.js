@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListItem, Left, Right, Thumbnail, Body, Text, Button, View } from 'native-base';
-
+import Time from './time';
 
 export default class DataItem extends Component {
 
@@ -24,6 +24,10 @@ export default class DataItem extends Component {
             <Body>
               <Text numberOfLines={2}>{this.data.title}</Text>
               <Text note numberOfLines={2}>{this.data.description}</Text>
+              <View style={{ flex: 1, flexDirection: 'row' }}>
+                <Text note>{this.data.source.name}</Text>
+                <Time time={this.data.publishedAt} />
+              </View>
             </Body>
             <Right>
               <Button transparent>

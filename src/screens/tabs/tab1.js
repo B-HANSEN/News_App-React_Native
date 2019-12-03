@@ -32,7 +32,7 @@ export default class ListThumbnailExample extends Component {
     console.log(this.state.data);
 
     let view = this.state.isLoading ? (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ marginTop: 60, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator animating={this.state.isLoading}  color="#00f0ff" />
         <Text style={{marginTop: 10}} children="Loading news.." />
       </View>

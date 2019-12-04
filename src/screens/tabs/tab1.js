@@ -4,8 +4,8 @@ import { Container, Content, List, Text } from 'native-base';
 
 import DataItem from '../../component/dataItem';
 import Modal from '../../component/modal';
-import { getArticles } from '../../service/news';
 
+import { getArticles } from '../../service/news';
 
 export default class ListThumbnailExample extends Component {
 
@@ -16,24 +16,23 @@ export default class ListThumbnailExample extends Component {
       isLoading: true,
       data: null,
       setModalVisible: false,
-      modalArticalData: {}
+      modalArticleData: {}
     }
   }
 
   handleItemDataOnPress = (articleData) => {
     this.setState({
       setModalVisible: true,
-      modalArticalData: articleData
+      modalArticleData: articleData
     });
   }
 
   handleModalClose = () => {
     this.setState({
       setModalVisible: false,
-      modalArticalData: {}
+      modalArticleData: {}
     });
   }
-
 
   componentDidMount() {
     getArticles().then(data => {
@@ -43,36 +42,36 @@ export default class ListThumbnailExample extends Component {
       });
     }, error => {
       Alert.alert('Error', 'Something went wrong!');
-    })
+    }
+    )
   }
 
   render() {
     console.log(this.state.data);
 
     let view = this.state.isLoading ? (
-      <View style={{ marginTop: 60, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator animating={this.state.isLoading}  color="#00f0ff" />
-        <Text style={{marginTop: 10}} children="Loading news.." />
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator animating={this.state.isLoading} color="#00f0ff" />
+        <Text style={{marginTop: 10}} children="Please Wait.." />
       </View>
     ) : (
       <List
         dataArray={this.state.data}
         renderRow={(item) => {
-          return (
-          <DataItem onPress={ this.handleItemDataOnPress } data={item} />
-          )
-        }}
-      /> 
+            return (
+              <DataItem onPress={this.handleItemDataOnPress} data={item} />
+            )
+        }} />
     )
-    
+
     return (
       <Container>
         <Content>
-          { view }          
+          {view}
         </Content>
         <Modal 
           showModal={this.state.setModalVisible}
-          articleData={this.state.modalArticalData}
+          articleData={this.state.modalArticleData}
           onClose={this.handleModalClose}
         />
       </Container>

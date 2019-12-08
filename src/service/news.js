@@ -1,6 +1,8 @@
 import { articles_url, _api_key, country_code } from '../config/rest_config';
 
+// provide default category 'general'
 export async function getArticles(category='general') {
+
     try {
         let articles = await fetch(`${articles_url}?country=${country_code}&category=${category}`, {
             headers: {
@@ -10,6 +12,7 @@ export async function getArticles(category='general') {
 
         let result = await articles.json();
         articles = null;
+
         return result.articles;
     }
     catch(error) {
